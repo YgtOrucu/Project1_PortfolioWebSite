@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  @await Component.InvokeAsync("AdminHead")
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    @await Component.InvokeAsync("AdminHeader")
+    <div class="flex flex-1 overflow-hidden">
+        @await Component.InvokeAsync("AdminSidebar")
+        <main class="flex-1 overflow-y-auto bg-gradient-to-br from-background-dark via-[#1a1022] to-background-dark p-6 lg:p-10">
+            @RenderBody()
+        </main>
+    </div>
+    @await Component.InvokeAsync("AdminFooter")
+</body>
+</html>
