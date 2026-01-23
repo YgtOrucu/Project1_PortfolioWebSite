@@ -1,0 +1,156 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <main class="flex-1 flex flex-col px-10 py-8 gap-8 max-w-[1600px] mx-auto w-full">
+            <div class="flex flex-wrap justify-between items-end gap-3">
+                <div class="flex flex-col gap-1">
+                    <p class="text-4xl font-black leading-tight tracking-[-0.033em]">Mesajlar</p>
+                    <p class="text-[#a89db9] text-base font-normal">Geliştirici portföyünüzden gelen soruları izleyin ve yönetin.</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="/Admin/Message" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-bold text-sm hover:opacity-90">
+                        <span class="material-symbols-outlined text-sm">refresh</span> Güncelle
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="flex flex-col gap-2 rounded-xl p-6 bg-card-dark border border-border-dark group hover:border-primary/50 transition-all">
+                    <div class="flex justify-between items-start">
+                        <p class="text-[#a89db9] text-sm font-medium">Toplam Mesajlar</p>
+                        <span class="material-symbols-outlined text-primary">mail</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">@ViewBag.TotalMessage</p>
+                </div>
+                <div class="flex flex-col gap-2 rounded-xl p-6 bg-primary/10 border border-primary/40 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-2 opacity-10">
+                        <span class="material-symbols-outlined text-6xl transform rotate-12">mark_as_unread</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <p class="text-primary text-sm font-bold">Okunmamış Mesajlar</p>
+                        <span class="material-symbols-outlined text-primary fill-[1]">mark_as_unread</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight text-white">@ViewBag.IsUnReadMessage</p>
+                </div>
+                <div class="flex flex-col gap-2 rounded-xl p-6 bg-card-dark border border-border-dark">
+                    <div class="flex justify-between items-start">
+                        <p class="text-[#a89db9] text-sm font-medium">Okunan Mesajlar</p>
+                        <span class="material-symbols-outlined text-[#a89db9]">drafts</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">@ViewBag.IsReadMessage</p>
+                </div>
+                <div class="flex flex-col gap-2 rounded-xl p-6 bg-card-dark border border-border-dark">
+                    <div class="flex justify-between items-start">
+                        <p class="text-[#a89db9] text-sm font-medium">Günün Mesajları</p>
+                        <span class="material-symbols-outlined text-[#a89db9]">today</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">@ViewBag.TodaysMessages</p>
+                </div>
+            </div>
+            <!-- Content Area: Chart and Inbox -->
+            <div class="flex gap-8 items-start">
+                <!-- Main List and Chart (Left side) -->
+                <div class="flex-1 flex flex-col gap-8 min-w-0">
+                    <!-- Inbox Table -->
+                    <div class="flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold">Inbox</h2>
+                            <span class="text-xs text-[#a89db9] bg-border-dark px-2 py-1 rounded">Toplam @Model.Count Mesaj</span>
+                        </div>
+                        <div class="rounded-xl border border-border-dark bg-card-dark max-h-[420px] overflow-y-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-border-dark text-[#a89db9] text-sm bg-card-dark">
+                                        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Gönderen</th>
+                                        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Konu-İçerik</th>
+                                        <th class="px-6 py-4 font-semibold uppercase tracking-wider text-right">Tarih</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-border-dark/50">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (!item.IsRead)
+                                        {
+                                            <tr class="unread-glow bg-primary/5 hover:bg-primary/10 transition-colors">
+                                                <td colspan="3" class="p-0">
+                                                    <a href="/Admin/MessageDetails/@item.MessageId"
+                                                       class="flex w-full h-full cursor-pointer">
+
+                                                        <!-- Sender -->
+                                                        <div class="px-6 py-4 flex items-center gap-3 w-1/3">
+                                                            <div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                                                @(item.NameSurname.Substring(0, 1))
+                                                            </div>
+                                                            <div>
+                                                                <p class="font-bold text-white">@item.NameSurname</p>
+                                                                <p class="text-xs text-[#a89db9]">@item.EmailAddress</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Subject -->
+                                                        <div class="px-6 py-4 flex items-center gap-2 w-1/3">
+                                                            <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                                                            <p class="font-bold text-white max-w-[300px] truncate">
+                                                                @(item.Subject + " - " + item.MessageDetails.Substring(0, 15) + "...")
+                                                            </p>
+                                                        </div>
+
+                                                        <!-- Date -->
+                                                        <div class="px-6 py-4 text-right text-sm font-bold text-white whitespace-nowrap w-1/3">
+                                                            @item.SendDate.ToString("dd/MM/yyyy")
+                                                        </div>
+
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                        else
+                                        {
+                                            <tr class="cursor-pointer hover:bg-border-dark/30 transition-colors">
+                                                <td colspan="3" class="p-0">
+                                                    <a href="/Admin/MessageDetails/@item.MessageId"
+                                                       class="flex w-full h-full">
+
+                                                        <!-- Sender -->
+                                                        <div class="px-6 py-4 flex items-center gap-3 w-1/3">
+                                                            <div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                                                @(item.NameSurname.Substring(0, 1))
+                                                            </div>
+                                                            <div>
+                                                                <p class="font-bold text-white">@item.NameSurname</p>
+                                                                <p class="text-xs text-[#a89db9]">@item.EmailAddress</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Subject -->
+                                                        <div class="px-6 py-4 flex items-center gap-2 w-1/3">
+                                                            <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                                                            <p class="font-bold text-white max-w-[300px] truncate">
+                                                                @(item.Subject + " - " + item.MessageDetails.Substring(0, 15) + "...")
+                                                            </p>
+                                                        </div>
+
+                                                        <!-- Date -->
+                                                        <div class="px-6 py-4 text-right text-sm font-bold text-white whitespace-nowrap w-1/3">
+                                                            @item.SendDate.ToString("dd/MM/yyyy")
+                                                        </div>
+
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

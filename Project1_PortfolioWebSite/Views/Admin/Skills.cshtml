@@ -1,0 +1,137 @@
+﻿@model List<Skills>
+@{
+    ViewData["Title"] = "Skills";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="flex h-full min-h-screen">
+    <main class="flex-1 flex flex-col">
+        <header class="p-8 pb-4 flex flex-wrap justify-between items-end gap-4">
+            <div class="flex flex-col gap-1">
+                <h2 class="text-3xl font-extrabold tracking-tight">Yetenekler</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Ana Sayfa için yeni yetenek ekleyebilir,güncelleyebilir ve silebilirsiniz.</p>
+            </div>
+            <a href="/Admin/SkillsAdd" class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg shadow-primary/20 transition-all">
+                <span class="material-symbols-outlined text-[20px]">add</span>
+                <span>Ekle</span>
+            </a>
+        </header>
+        <br />
+        <section>
+            @foreach (var item in Model)
+            {
+                var intValue = Convert.ToInt32(item.Value);
+
+                if (intValue <= 40)
+                {
+                    <div class="skill-card group bg-white dark:bg-[#1e1628] p-5 rounded-xl border border-primary/5 shadow-xl shadow-black/5 dark:shadow-none transition-all mb-7 transition-transform duration-300 ease-out hover:-translate-y-2" ">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="/Admin/SkillsEdit/@(item.SkillsId)" class="p-1.5 hover:bg-primary/10 rounded text-slate-400 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                                </a>
+                                <a href="/Admin/SkillsDelete/@(item.SkillsId)" class="p-1.5 hover:bg-red-500/10 rounded text-slate-400 hover:text-red-500 transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="space-y-1 mb-4">
+                            <h3 class="font-bold text-lg">@(item.Name)</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                                <span class="text-red-500">Öğreniyor</span>
+                                <span>@(item.Value + "%")</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 progress-glow-red rounded-full transition-all" style="width: @(item.Value + "%")"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                if (intValue > 40 && intValue < 70)
+                {
+                    <div class="skill-card group bg-white dark:bg-[#1e1628] p-5 rounded-xl border border-primary/5 shadow-xl shadow-black/5 dark:shadow-none transition-all mb-7 transition-transform duration-300 ease-out hover:-translate-y-2" ">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="/Admin/SkillsEdit/@(item.SkillsId)" class="p-1.5 hover:bg-primary/10 rounded text-slate-400 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                                </a>
+                                <a href="/Admin/SkillsDelete/@(item.SkillsId)" class="p-1.5 hover:bg-red-500/10 rounded text-slate-400 hover:text-red-500 transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="space-y-1 mb-4">
+                            <h3 class="font-bold text-lg">@(item.Name)</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                                <span class="text-amber-500">Orta Seviye</span>
+                                <span>@(item.Value + "%")</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="h-full bg-amber-500 progress-glow-yellow rounded-full transition-all" style="width: @(item.Value + "%")"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (intValue > 70 && intValue < 85)
+                {
+                    <div class="skill-card group bg-white dark:bg-[#1e1628] p-5 rounded-xl border border-primary/5 shadow-xl shadow-black/5 dark:shadow-none transition-all mb-7 transition-transform duration-300 ease-out hover:-translate-y-2" ">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="/Admin/SkillsEdit/@(item.SkillsId)" class="p-1.5 hover:bg-primary/10 rounded text-slate-400 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                                </a>
+                                <a href="/Admin/SkillsDelete/@(item.SkillsId)" class="p-1.5 hover:bg-red-500/10 rounded text-slate-400 hover:text-red-500 transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="space-y-1 mb-4">
+                            <h3 class="font-bold text-lg">@(item.Name)</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                                <span class="text-primary">İyi</span>
+                                <span>@(item.Value + "%")</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary progress-glow rounded-full transition-all" style="width: @(item.Value + "%"); box-shadow: 0 0 12px rgba(124, 43, 238, 0.4);"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (intValue >= 85)
+                {
+                    <div class="skill-card group bg-white dark:bg-[#1e1628] p-5 rounded-xl border border-primary/5 shadow-xl shadow-black/5 dark:shadow-none transition-all mb-7 transition-transform duration-300 ease-out hover:-translate-y-2" ">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="/Admin/SkillsEdit/@(item.SkillsId)" class="p-1.5 hover:bg-primary/10 rounded text-slate-400 hover:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                                </a>
+                                <a href="/Admin/SkillsDelete/@(item.SkillsId)" class="p-1.5 hover:bg-red-500/10 rounded text-slate-400 hover:text-red-500 transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="space-y-1 mb-4">
+                            <h3 class="font-bold text-lg">@(item.Name)</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                                <span class="text-emerald-500">Uzman</span>
+                                <span>@(item.Value + "%")</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="h-full bg-emerald-500 progress-glow-green rounded-full transition-all" style="width: @(item.Value + "%")"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </section>
+    </main>
+</div>

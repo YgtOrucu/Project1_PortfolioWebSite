@@ -1,0 +1,62 @@
+﻿@model List<Experience>
+@{
+    ViewData["Title"] = "Experience";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="relative flex min-h-screen w-full flex-col">
+    <div class="flex flex-1">
+        <main class="flex-1 flex flex-col items-center py-8 px-4 sm:px-8 overflow-y-auto">
+            <div class="w-full max-w-[1000px]">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <div class="flex flex-col gap-1">
+                        <h2 class="text-slate-900 dark:text-white text-3xl font-black leading-tight tracking-tight">Deneyimler</h2>
+                        <p class="text-slate-500 dark:text-[#a89db9] text-base">Ana Sayfa için deneyim ekleyebilir,güncelleyebilir ve silebilirsiniz.</p>
+                    </div>
+                    <a href="/Admin/ExperienceAdd" class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-2.5 px-5 rounded-lg transition-all shadow-lg shadow-primary/20 group">
+                        <span class="material-symbols-outlined text-xl group-hover:rotate-90 transition-transform">add</span>
+                        <span class="text-sm">Ekle</span>
+                    </a>
+                </div>
+                <div class="relative pl-8">
+                    <div class="absolute left-4 top-4 bottom-4 w-[2px] bg-slate-200 dark:bg-[#453b54]"></div>
+                    <div class="flex flex-col gap-6">
+                        @foreach (var item in Model)
+                        {
+                            var workdate = item.WorkDate.Split(',');
+                            <div class="relative">
+                                <div class="absolute -left-[23px] top-6 size-4 rounded-full bg-primary border-4 border-background-light dark:border-background-dark shadow-[0_0_10px_rgba(124,43,238,0.5)] z-10"></div>
+                                <div class="bg-white dark:bg-[#201c27] rounded-xl p-5 border border-slate-100 dark:border-[#2f2839] shadow-sm hover:shadow-md transition-shadow group">
+                                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                        <div class="flex-1">
+                                            <div class="flex flex-wrap items-center gap-3 mb-2">
+                                                <h3 class="text-slate-900 dark:text-white text-xl font-bold">@(item.Title)</h3>
+                                                <span class="px-2.5 py-1 rounded bg-primary/10 dark:bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/10">@workdate[1]</span>
+                                            </div>
+                                            <p class="text-slate-600 dark:text-[#a89db9] text-sm leading-relaxed mb-4 line-clamp-2">
+                                                @(workdate[0])
+                                            </p>
+                                            <p class="text-slate-600 dark:text-[#a89db9] text-sm leading-relaxed mb-4 line-clamp-2">
+                                                @(item.Description)
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                                            <a href="/Admin/ExperienceEdit/@(item.ExperienceId)" class="p-2 rounded-lg bg-slate-100 dark:bg-[#2f2839] text-slate-600 dark:text-white hover:text-primary transition-colors">
+                                                <span class="material-symbols-outlined text-xl">edit</span>
+                                            </a>
+                                            <a href="/Admin/ExperienceDelete/@(item.ExperienceId)" class="p-2 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all">
+                                                <span class="material-symbols-outlined text-xl">delete</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+

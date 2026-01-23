@@ -1,0 +1,48 @@
+﻿@model Skills
+@{
+    ViewData["Title"] = "SkillsAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Modal Overlay (Add/Edit) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="bg-white dark:bg-[#1e1628] w-full max-w-md rounded-2xl border border-primary/20 shadow-2xl overflow-hidden">
+        <div class="p-6 border-b border-primary/10 flex justify-between items-center">
+            <h3 class="text-xl font-bold">Ekle</h3>
+        </div>
+        <form class="p-6 space-y-6" method="post">
+            <!-- Skill Name Input -->
+            <div class="space-y-2">
+                <label class="text-sm font-semibold text-slate-500 dark:text-slate-300" for="skill-name">Yetenek</label>
+                <input class="w-full bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-primary/20 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-500" id="skill-name" name="Name" placeholder="e.g. Docker Containerization" required="" type="text" />
+                <p class="text-[11px] text-red-500 hidden">Bu alan boş bırakılamaz</p>
+            </div>
+            <!-- Proficiency Value Slider -->
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <label class="text-sm font-semibold text-slate-500 dark:text-slate-300">Value</label>
+                    <span class="bg-primary/10 text-primary px-2 py-1 rounded-lg text-xs font-bold tabular-nums">
+                        <span id="slider-val">80</span>%
+                    </span>
+                </div>
+                <div class="relative pt-1">
+                    <input class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" name="Value" type="range" value="80" />
+                    <div class="flex justify-between mt-2 px-1">
+                        <span class="text-[10px] text-slate-400 font-medium">Novice</span>
+                        <span class="text-[10px] text-slate-400 font-medium">Expert</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Action Buttons -->
+            <div class="flex gap-3 pt-2">
+                <a href="/Admin/Skills" class="flex-1 px-4 py-3 rounded-xl border border-slate-200 dark:border-primary/20 text-sm font-bold hover:bg-slate-50 dark:hover:bg-white/5 transition-colors" type="button">
+                    Cancel
+                </a>
+                <button class="flex-1 px-4 py-3 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all" type="submit">
+                    Ekle
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

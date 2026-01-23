@@ -1,0 +1,68 @@
+﻿@model Testimonial
+@{
+    ViewData["Title"] = "TestimonialsEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white dark:bg-background-dark w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-border-dark overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 dark:border-border-dark flex items-center justify-between bg-slate-50 dark:bg-slate-800/20">
+            <h3 class="text-lg font-bold">Güncelle</h3>
+        </div>
+        <form asp-controller="Admin" asp-action="TestimonialsUpdate" method="post" class="p-6 space-y-6">
+            <input asp-for="TestimonialId" type="hidden" />
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-1 space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">İsim Soyadı</label>
+                        <input class="w-full bg-slate-100 dark:bg-card-dark border-none rounded-lg focus:ring-2 focus:ring-primary text-sm p-3" asp-for="NameSurname" type="text" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Başlık ve Şirket</label>
+                        <input class="w-full bg-slate-100 dark:bg-card-dark border-none rounded-lg focus:ring-2 focus:ring-primary text-sm p-3" asp-for="TitleAndCompany" type="text" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Resim URL</label>
+                        <input class="w-full bg-slate-100 dark:bg-card-dark border-none rounded-lg pr-4 py-3 text-xs focus:ring-2 focus:ring-primary" asp-for="ImageUrl" type="text" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Yorum</label>
+                        <textarea class="w-full bg-slate-100 dark:bg-card-dark border-none rounded-lg focus:ring-2 focus:ring-primary text-sm p-3 resize-none custom-scrollbar" asp-for="CommentDetails" rows="4"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
+                            Durum
+                        </label>
+
+                        <div class="flex items-center gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input asp-for="IsConfirm"
+                                       type="radio"
+                                       value="true"
+                                       class="w-4 h-4 text-primary bg-slate-100 border-slate-300 focus:ring-primary focus:ring-2" />
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
+                                    Active
+                                </span>
+                            </label>
+
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input asp-for="IsConfirm"
+                                       type="radio"
+                                       value="false"
+                                       class="w-4 h-4 text-primary bg-slate-100 border-slate-300 focus:ring-primary focus:ring-2" />
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
+                                    Passive
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-4">
+                <a href="/Admin/Testimonials" class="px-5 py-2.5 rounded-lg text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" type="button">Geri</a>
+                <button class="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 transition-all" type="submit">Güncelle</button>
+            </div>
+        </form>
+    </div>
+</div>

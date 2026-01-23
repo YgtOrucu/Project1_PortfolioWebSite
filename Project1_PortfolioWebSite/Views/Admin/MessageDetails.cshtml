@@ -1,0 +1,48 @@
+﻿@model Message
+
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Right Detail Panel (Drawer) -->
+<aside class="w-full sticky top-28 h-[calc(100vh-160px)] flex flex-col glass-panel rounded-xl overflow-hidden border border-border-dark">
+    <!-- Panel Header -->
+    <div class="p-6 border-b border-border-dark flex flex-col gap-4">
+        <div class="flex justify-between items-start">
+            <span class="px-2 py-1 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">Seçilen Mesaj</span>
+            <a href="/Admin/Message" class="text-[#a89db9] hover:text-white">
+                <span class="material-symbols-outlined text-xl">subdirectory_arrow_left</span>
+            </a>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="size-12 rounded-lg bg-primary flex items-center justify-center text-white text-xl font-black shadow-lg shadow-primary/20">
+                @Model.NameSurname.Substring(0, 1)
+            </div>
+            <div class="flex flex-col">
+                <h4 class="text-lg font-bold">@Model.NameSurname</h4>
+                <p class="text-sm text-primary font-medium" @Model.EmailAddress</p>
+            </div>
+        </div>
+    </div>
+    <!-- Panel Content -->
+    <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
+        <div>
+            <p class="text-[10px] font-bold text-[#a89db9] uppercase tracking-widest mb-1">Konu</p>
+            <h3 class="text-white font-bold text-xl leading-tight">@Model.Subject</h3>
+        </div>
+        <div>
+            <p class="text-[10px] font-bold text-[#a89db9] uppercase tracking-widest mb-1">Received</p>
+            <p class="text-sm text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+                @Model.SendDate
+            </p>
+        </div>
+        <div class="flex-1">
+            <p class="text-[10px] font-bold text-[#a89db9] uppercase tracking-widest mb-2">İçerik</p>
+            <div class="text-sm leading-relaxed text-slate-300 space-y-4 bg-background-dark/50 p-4 rounded-lg border border-border-dark/30">
+                <p>@Model.MessageDetails<br />@Model.NameSurname</p>
+            </div>
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "ExperienceAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-background-dark/80 backdrop-blur-md"></div>
+    <div class="relative w-full max-w-xl bg-white dark:bg-[#201c27] rounded-2xl shadow-2xl border border-slate-200 dark:border-[#2f2839] overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-100 dark:border-[#2f2839] flex items-center justify-between">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">add_circle</span>
+                Ekle
+            </h3>
+        </div>
+
+        <form class="p-6 space-y-5" method="post">
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm font-semibold text-slate-700 dark:text-slate-200" for="Title">Başlık</label>
+                <div class="relative">
+                    <input class="w-full bg-slate-50 dark:bg-[#141118] border-slate-200 dark:border-[#2f2839] rounded-lg px-4 py-2.5 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-slate-400 dark:placeholder:text-[#a89db9]/50" id="Title" name="Title" placeholder="e.g. Senior Software Engineer" type="text" />
+                </div>
+            </div>
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm font-semibold text-slate-700 dark:text-slate-200" for="WorkDate">Tarih</label>
+                <div class="relative">
+                    <input class="w-full bg-slate-50 dark:bg-[#141118] border-slate-200 dark:border-[#2f2839] rounded-lg px-4 py-2.5 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-slate-400 dark:placeholder:text-[#a89db9]/50" id="WorkDate" name="WorkDate" placeholder="e.g XYZ Bilişim, 2021-2022" type="text" />
+                </div>
+            </div>
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm font-semibold text-slate-700 dark:text-slate-200" for="Description">Açıklama</label>
+<textarea class="w-full bg-slate-50 dark:bg-[#141118] border-slate-200 dark:border-[#2f2839] rounded-lg px-4 py-2.5 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-slate-400 dark:placeholder:text-[#a89db9]/50 custom-scrollbar" id="Description" name="Description" placeholder="C#, SQL ve MVC yapısını öğrenerek...." rows="4"></textarea>
+            </div>
+            <div class="pt-4 flex items-center justify-end gap-3 border-t border-slate-100 dark:border-[#2f2839]">
+                <a href="/Admin/Experience" class="px-5 py-2.5 rounded-lg text-sm font-bold text-slate-600 dark:text-[#a89db9] hover:bg-slate-100 dark:hover:bg-[#2f2839] transition-all" type="button">
+                    Cancel
+                </a>
+                <button class="px-6 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-all shadow-lg shadow-primary/30" type="submit">
+                    Ekle
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,4 +1,6 @@
-﻿ <!-- Collapsible Sidebar -->
+﻿@model int 
+
+<!-- Collapsible Sidebar -->
 <aside class="w-64 border-r border-border-dark glass flex flex-col justify-between py-8 overflow-y-auto hidden lg:flex">
     <div class="flex flex-col gap-1">
         <p class="px-6 mb-4 text-[10px] font-bold uppercase tracking-widest text-[#ad9db9]">Main Menu</p>
@@ -18,24 +20,24 @@
             <span class="material-symbols-outlined text-[22px]">school</span>
             <span class="text-sm font-medium">Eğitim</span>
         </a>
-        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="#">
+        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="/Admin/Experience">
             <span class="material-symbols-outlined text-[22px]">work</span>
             <span class="text-sm font-medium">Deneyim</span>
         </a>
-        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="#">
+        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="/Admin/Message">
             <span class="material-symbols-outlined text-[22px]">chat_bubble</span>
             <span class="text-sm font-medium">Mesajlar</span>
-            <span class="ml-auto bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+            <span class="ml-auto bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full">@Model</span>
         </a>
-        <a class="flex items-center gap-4 px-6 py-3 text-white transition-all" href="#">
+        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="/Admin/Portfolio">
             <span class="material-symbols-outlined text-[22px]">folder_special</span>
             <span class="text-sm font-bold">Projeler</span>
         </a>
-        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="#">
+        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="/Admin/Skills">
             <span class="material-symbols-outlined text-[22px]">code</span>
             <span class="text-sm font-medium">Yetenekler</span>
         </a>
-        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="#">
+        <a class="flex items-center gap-4 px-6 py-3 text-[#ad9db9] hover:text-white hover:bg-primary/10 transition-all" href="/Admin/Testimonials">
             <span class="material-symbols-outlined text-[22px]">format_quote</span>
             <span class="text-sm font-medium">Yorumlar</span>
         </a>

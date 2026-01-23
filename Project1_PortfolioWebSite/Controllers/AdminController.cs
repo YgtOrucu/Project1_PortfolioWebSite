@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Project1_PortfolioWebSite.Context;
 using Project1_PortfolioWebSite.Entities;
 using Project1_PortfolioWebSite.Models.ContactİnfoForAdminPage;
@@ -228,6 +230,288 @@ namespace Project1_PortfolioWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction("Education");
         }
+        #endregion
+
+        #endregion
+
+        #region ExperienceOperations
+
+        #region ExperienceList
+        public IActionResult Experience()
+        {
+            var values = _context.Experiences.ToList();
+            return View(values);
+        }
+
+        #endregion
+
+        #region ExperienceAdd
+        [HttpGet]
+        public IActionResult ExperienceAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ExperienceAdd(Experience experience)
+        {
+            _context.Experiences.Add(experience);
+            _context.SaveChanges();
+            return RedirectToAction("Experience");
+        }
+        #endregion
+
+        #region ExperienceDelete
+        public IActionResult ExperienceDelete(int id)
+        {
+            var values = _context.Experiences.Find(id);
+            _context.Experiences.Remove(values);
+            _context.SaveChanges();
+            return RedirectToAction("Experience");
+        }
+        #endregion
+
+        #region ExperienceWithAndUpdate
+        public IActionResult ExperienceEdit(int id)
+        {
+            var values = _context.Experiences.Find(id);
+            return View("ExperienceEdit", values);
+        }
+
+        [HttpPost]
+        public IActionResult ExperienceUpdate(Experience experience)
+        {
+            _context.Experiences.Update(experience);
+            _context.SaveChanges();
+            return RedirectToAction("Experience");
+        }
+
+
+
+        #endregion
+
+        #endregion
+
+        #region MessageOperations
+
+        #region MessageList
+        public IActionResult Message()
+        {
+            #region GetIstatisticWithViewbag
+
+            ViewBag.TotalMessage = _context.Messages.Count();
+            ViewBag.IsUnReadMessage = _context.Messages.Where(x => x.IsRead == false).Count();
+            ViewBag.IsReadMessage = _context.Messages.Where(x => x.IsRead == true).Count();
+            ViewBag.TodaysMessages = _context.Messages.Where(x=>x.SendDate.Day == DateTime.Now.Day).Count();
+
+
+            #endregion
+
+            var values = _context.Messages.ToList();
+            return View(values);
+        }
+
+        public IActionResult MessageDetails(int id)
+        {
+            var values = _context.Messages.Find(id);
+            return View("MessageDetails", values);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region PortfolioOperations
+
+        #region PortfolioList
+        public IActionResult Portfolio()
+        {
+            var values = _context.Portfolios.Include(x=>x.Category).ToList();
+            return View(values);
+        }
+
+        #endregion
+
+        #region PortfolioAdd
+        [HttpGet]
+        public IActionResult PortfolioAdd()
+        {
+            #region GetCategories
+            var values = _context.Categories.Select(x => new SelectListItem
+            {
+                Value = x.CategoryId.ToString(),
+                Text = x.Name
+            }).ToList();
+
+            ViewBag.categories = values;
+            #endregion
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult PortfolioAdd(Portfolio portfolio)
+        {
+            _context.Portfolios.Add(portfolio);
+            _context.SaveChanges();
+            return RedirectToAction("Portfolio");
+        }
+        #endregion
+
+        #region PortfolioDelete
+        public IActionResult PortfolioDelete(int id)
+        {
+            var values = _context.Portfolios.Find(id);
+            _context.Portfolios.Remove(values);
+            _context.SaveChanges();
+            return RedirectToAction("Portfolio");
+        }
+        #endregion
+
+        #region PortfolioWithAndUpdate
+        public IActionResult PortfolioEdit(int id)
+        {
+            #region GetCategories
+            var getcategory = _context.Categories.Select(x => new SelectListItem
+            {
+                Value = x.CategoryId.ToString(),
+                Text = x.Name
+            }).ToList();
+
+            ViewBag.categories = getcategory;
+            #endregion
+
+            var values = _context.Portfolios.Find(id);
+            return View("PortfolioEdit", values);
+        }
+
+        [HttpPost]
+        public IActionResult PortfolioUpdate(Portfolio portfolio)
+        {
+            _context.Portfolios.Update(portfolio);
+            _context.SaveChanges();
+            return RedirectToAction("Portfolio");
+        }
+
+
+
+        #endregion
+
+        #endregion
+
+        #region SkillsOperations
+
+        #region SkillsList
+        public IActionResult Skills()
+        {
+            var values = _context.Skills.ToList();
+            return View(values);
+        }
+
+        #endregion
+
+        #region SkillsAdd
+        [HttpGet]
+        public IActionResult SkillsAdd()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult SkillsAdd(Skills Skills)
+        {
+            _context.Skills.Add(Skills);
+            _context.SaveChanges();
+            return RedirectToAction("Skills");
+        }
+        #endregion
+
+        #region SkillsDelete
+        public IActionResult SkillsDelete(int id)
+        {
+            var values = _context.Skills.Find(id);
+            _context.Skills.Remove(values);
+            _context.SaveChanges();
+            return RedirectToAction("Skills");
+        }
+        #endregion
+
+        #region SkillsWithAndUpdate
+        public IActionResult SkillsEdit(int id)
+        {
+            var values = _context.Skills.Find(id);
+            return View("SkillsEdit", values);
+        }
+
+        [HttpPost]
+        public IActionResult SkillsUpdate(Skills Skills)
+        {
+            _context.Skills.Update(Skills);
+            _context.SaveChanges();
+            return RedirectToAction("Skills");
+        }
+
+
+
+        #endregion
+
+        #endregion
+
+        #region TestimonialsOperations
+
+        #region TestimonialsList
+        public IActionResult Testimonials()
+        {
+            var values = _context.Testimonials.ToList();
+            return View(values);
+        }
+
+        #endregion
+
+        #region TestimonialsAdd
+        [HttpGet]
+        public IActionResult TestimonialsAdd()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult TestimonialsAdd(Testimonial Testimonial)
+        {
+            _context.Testimonials.Add(Testimonial);
+            _context.SaveChanges();
+            return RedirectToAction("Testimonials");
+        }
+        #endregion
+
+        #region TestimonialsDelete
+        public IActionResult TestimonialsDelete(int id)
+        {
+            var values = _context.Testimonials.Find(id);
+            _context.Testimonials.Remove(values);
+            _context.SaveChanges();
+            return RedirectToAction("Testimonials");
+        }
+        #endregion
+
+        #region TestimonialsWithAndUpdate
+        public IActionResult TestimonialsEdit(int id)
+        {
+            var values = _context.Testimonials.Find(id);
+            return View("TestimonialsEdit", values);
+        }
+
+        [HttpPost]
+        public IActionResult TestimonialsUpdate(Testimonial Testimonial)
+        {
+            _context.Testimonials.Update(Testimonial);
+            _context.SaveChanges();
+            return RedirectToAction("Testimonials");
+        }
+
+
+
         #endregion
 
         #endregion

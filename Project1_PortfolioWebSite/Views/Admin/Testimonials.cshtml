@@ -1,0 +1,70 @@
+﻿@model List<Testimonial>
+@{
+    ViewData["Title"] = "Testimonials";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="flex-1 flex flex-col min-w-0">
+    <div class="p-8 space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <h2 class="text-3xl font-black tracking-tight">Yorumlar</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-1">Web siteniz için müşteri geri bildirimlerini inceleyin, onaylayın ve yönetin.</p>
+            </div>
+            <a href="/Admin/TestimonialsAdd" class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 shadow-lg shadow-primary/20 transition-all">
+                <span class="material-symbols-outlined">add</span>
+                <span>Yorum Ekle</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            @foreach (var item in Model)
+            {
+                <div class="group bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-border-dark overflow-hidden flex flex-col transition-all hover:border-primary/50 hover:shadow-xl dark:hover:shadow-primary/5">
+                    <div class="p-6 flex-1 space-y-4">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="size-14 rounded-full border-2 border-primary/20 p-0.5">
+                                    <div class="size-full rounded-full bg-cover bg-center" data-alt="Client profile picture: Smiling woman" style="background-image: url('@(item.ImageUrl)')"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">@(item.NameSurname)</h4>
+                                    <p class="text-xs text-slate-500">@(item.TitleAndCompany)</p>
+                                </div>
+                            </div>
+                            @if (item.IsConfirm)
+                            {
+                                <div class="flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/10 text-green-500 border border-green-500/20">
+                                    <span class="size-1.5 rounded-full bg-green-500"></span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider">Onaylandı</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="flex items-center gap-1 px-2 py-1 rounded-full bg-orange-500/10 text-orange-500 border border-orange-500/20">
+                                    <span class="size-1.5 rounded-full bg-orange-500"></span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider">Beklemede</span>
+                                </div>
+                            }
+                        </div>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute -top-2 -left-2 text-primary/10 text-4xl select-none">format_quote</span>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-4 italic">
+                                @(item.CommentDetails)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-border-dark flex items-center justify-between">
+                        <div class="flex gap-2">
+                            <a href="/Admin/TestimonialsEdit/@(item.TestimonialId)" class="size-8 flex items-center justify-center rounded-lg bg-white dark:bg-card-dark border border-slate-200 dark:border-border-dark text-slate-600 dark:text-slate-400 hover:text-primary transition-all shadow-sm">
+                                <span class="material-symbols-outlined text-lg">edit</span>
+                            </a>
+                            <a href="/Admin/TestimonialsDelete/@(item.TestimonialId)" class="size-8 flex items-center justify-center rounded-lg bg-white dark:bg-card-dark border border-slate-200 dark:border-border-dark text-slate-600 dark:text-slate-400 hover:text-red-500 transition-all shadow-sm">
+                                <span class="material-symbols-outlined text-lg">delete</span>
+                            </a>
+                        </div>  
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>
