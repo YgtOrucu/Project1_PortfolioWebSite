@@ -1,0 +1,90 @@
+﻿@model ContactInfoForAdmin
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="max-w-6xl mx-auto px-6 py-10">
+    <!-- Page Heading -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+        <div class="space-y-1">
+            <h2 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white">İletişim</h2>
+            <p class="text-slate-500 dark:text-slate-400">Potansiyel müşterilerin ve işe alım uzmanlarının çeşitli platformlar üzerinden sizinle nasıl iletişime geçeceğini yönetin.</p>
+        </div>
+        <a href="/Admin/ContactAdd" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95 whitespace-nowrap">
+            <span class="material-symbols-outlined">add</span>
+            Ekle
+        </a>
+    </div>
+    <!-- Contact Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        @foreach (var item in Model.Contact)
+        {
+            <div class="bg-charcoal dark:bg-anthracite border border-slate-200 dark:border-white/5 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-primary/30 transition-all group relative">
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Ana Ofis</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-widest font-semibold">İletişim Bilgileri</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-sm">call</span>
+                        </div>
+                        <span class="text-sm font-medium text-slate-600 dark:text-slate-300">@item.Phone</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-sm">mail</span>
+                        </div>
+                        <span class="text-sm font-medium text-slate-600 dark:text-slate-300">@item.EMail</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-sm">location_on</span>
+                        </div>
+                        <span class="text-sm font-medium text-slate-600 dark:text-slate-300 line-clamp-1">@item.Address</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- Manage Table Section Header -->
+    <div class="mt-16 mb-6">
+        <h3 class="text-2xl font-bold text-slate-900 dark:text-white px-1">Tüm İletişim Bilgileri</h3>
+        <div class="h-1 w-12 bg-primary rounded-full mt-2 ml-1"></div>
+    </div>
+    <!-- Table Component -->
+    <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-white/5 bg-charcoal dark:bg-anthracite shadow-sm">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/5">
+                        <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Açıklama</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Telefon</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mail</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Adres</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-white/5">
+                    @foreach (var item in Model.ContactList)
+                    {
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-white">@(item.Description.Substring(0, 20) + "...")</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">@(item.Phone)</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">@(item.EMail)</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">@(item.Address.Substring(0, 20) + "...")</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-bold text-primary">
+                                <a href="/Admin/ContactEdit/@item.ContactId" class="hover:underline">Düzenle</a>
+                                <span class="mx-2 text-slate-300 dark:text-slate-700">|</span>
+                                <a href="/Admin/ContactDelete/@item.ContactId" class="hover:underline text-red-400">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

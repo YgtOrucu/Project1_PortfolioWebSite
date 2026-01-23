@@ -1,0 +1,40 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "CategoryEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="w-full max-w-md bg-white dark:bg-[#1c1622] rounded-xl shadow-2xl border border-slate-200 dark:border-[#493b54] overflow-hidden transform scale-100">
+        <div class="flex items-center justify-between p-6 border-b border-slate-100 dark:border-[#322839]">
+            <h3 class="text-xl font-bold dark:text-white">Kategori Güncelle</h3>
+        </div>
+        <form asp-controller="Admin" asp-action="CategoryUpdate" method="post" class="p-6 space-y-5">
+
+            <input asp-for="CategoryId" type="hidden" />
+
+            <div class="space-y-2">
+                <label for="Name" class="text-sm font-semibold text-slate-700 dark:text-[#ad9db9]">Kategori İsmin</label>
+                <input asp-for="Name" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-[#322839] border border-slate-200 dark:border-transparent focus:border-primary dark:focus:border-primary focus:ring-1 focus:ring-primary rounded-lg text-slate-900 dark:text-white outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-[#5c4d6a]" type="text" />
+                <p class="text-[11px] text-slate-400 dark:text-[#ad9db9]">This name will be visible to users in the portfolio navigation.</p>
+            </div>
+            <div class="space-y-2">
+                <label for="DataFilter" class="text-sm font-semibold text-slate-700 dark:text-[#ad9db9]">Data Filter (Slug)</label>
+                <div class="relative">
+                    <input asp-for="DataFilter" class="w-full font-mono text-sm px-4 py-2.5 bg-slate-50 dark:bg-[#322839] border border-emerald-500/50 dark:border-emerald-500/50 focus:border-primary rounded-lg text-emerald-600 dark:text-emerald-400 outline-none transition-all" type="text" />
+                    <span class="absolute right-3 top-2.5 material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
+                </div>
+            </div>
+            <div class="p-3 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20 flex gap-3">
+                <span class="material-symbols-outlined text-primary text-sm">info</span>
+                <p class="text-[11px] text-slate-600 dark:text-[#ad9db9] leading-relaxed">Filtre anahtarının proje şablonlarınızda kullanılan veri öznitelikleriyle eşleştiğinden emin olun.</p>
+            </div>
+
+            <div class="p-6 bg-slate-50 dark:bg-[#221c27] flex justify-end gap-3">
+                <a href="/Admin/Category" class="px-5 py-2 text-sm font-bold text-slate-600 dark:text-[#ad9db9] hover:text-slate-900 dark:hover:text-white transition-colors">Geri</a>
+                <button type="submit" class="px-6 py-2 text-sm font-bold bg-primary text-white rounded-lg shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all">Güncelle</button>
+            </div>
+        </form>
+    </div>
+</div>
+

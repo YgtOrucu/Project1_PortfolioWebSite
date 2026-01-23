@@ -1,0 +1,93 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "ContactEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="fixed inset-0 bg-background-dark/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-charcoal dark:bg-anthracite w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 overflow-hidden transform transition-all">
+
+        <div class="px-8 py-6 border-b border-slate-200 dark:border-white/5 flex items-center justify-between">
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Düzenle</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Ana sayfa için iletişim bilgilerinini düzenle
+                </p>
+            </div>
+        </div>
+
+        <form asp-controller="Admin" asp-action="ContactUpdate" method="post">
+
+            <div class="px-8 py-8 space-y-6">
+
+                <input asp-for="ContactId" type="hidden" />
+
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        Açıklama
+                    </label>
+                    <textarea asp-for="Description"
+                              class="w-full bg-slate-50 dark:bg-charcoal/5 border border-slate-200 dark:border-white/10 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none min-h-[100px] resize-none text-slate-900 dark:text-white"
+                              placeholder="e.g. Primary business contact hours and location..."></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                            Telefon
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <span class="material-symbols-outlined text-lg">call</span>
+                            </div>
+                            <input asp-for="Phone"
+                                   class="w-full bg-slate-50 dark:bg-charcoal/5 border border-slate-200 dark:border-white/10 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-slate-900 dark:text-white"
+                                   type="tel" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                            Mail Adresi
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <span class="material-symbols-outlined text-lg">mail</span>
+                            </div>
+                            <input asp-for="EMail"
+                                   class="w-full bg-slate-50 dark:bg-charcoal/5 border border-slate-200 dark:border-white/10 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-slate-900 dark:text-white"
+                                   type="email" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        Adres
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <span class="material-symbols-outlined text-lg">location_on</span>
+                        </div>
+                        <input asp-for="Address"
+                               class="w-full bg-slate-50 dark:bg-charcoal/5 border border-slate-200 dark:border-white/10 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-slate-900 dark:text-white"
+                               type="text" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="px-8 py-6 bg-slate-50 dark:bg-charcoal/5 flex items-center justify-end gap-3">
+                <button type="button"
+                        class="px-6 py-2.5 rounded-lg text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-charcoal/10 transition-colors">
+                    Geri
+                </button>
+
+                <button type="submit"
+                        class="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 rounded-lg text-sm font-bold shadow-lg shadow-primary/20 transition-all active:scale-95">
+                    Güncelle
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+﻿@model List<Education>
+@{
+    ViewData["Title"] = "Education";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="flex flex-col min-h-screen">
+    <main class="flex-1 max-w-[1200px] mx-auto w-full px-10 py-10 relative">
+        <div class="flex flex-wrap justify-between items-end gap-4 mb-12">
+            <div class="flex flex-col gap-2">
+                <h1 class="text-white text-4xl font-black leading-tight tracking-tight">Eğitim Bilgileri</h1>
+                <p class="text-slate-400 text-base font-normal">Ana Sayfa için eğitim bilgileri ekleyebilir,düzenleyebilir ve silebilirsiniz.</p>
+            </div>
+            <a href="/Admin/EducationAdd" class="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold transition-all shadow-lg shadow-primary/20">
+                <span class="material-symbols-outlined">add</span>
+                <span>Ekle</span>
+            </a>
+        </div>
+        <div class="relative pl-12 space-y-8">
+            <div class="absolute left-[19px] top-4 bottom-4 w-[2px] timeline-line rounded-full opacity-30"></div>
+            @foreach(var item in Model)
+            {
+                <div class="relative flex items-start group">
+                <div class="absolute -left-[12px] top-4 size-6 rounded-full bg-primary border-4 border-background-dark z-10"></div>
+                <div class="flex-1 bg-surface-dark/50 border border-border-dark p-6 rounded-2xl hover:bg-surface-dark transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-primary/5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">@(item.Title)</h3>
+                            <p class="text-slate-400 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">school</span>
+                                    @(item.SchoolName)
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-end gap-4">
+                                <span class="px-4 py-1.5 bg-primary/20 text-primary rounded-full text-xs font-bold uppercase tracking-wider">@(item.Date)</span>
+                            <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <a href="/Admin/EducationEdit/@(item.EducationId)" class="p-2 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-xl">edit</span>
+                                </a>
+                                    <a href="/Admin/EducationDelete/@(item.EducationId)" class="p-2 hover:bg-red-500/10 rounded-lg text-slate-400 hover:text-red-400 transition-colors">
+                                    <span class="material-symbols-outlined text-xl">delete</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+            }
+        </div>
+    </main>
+</div>
+
+

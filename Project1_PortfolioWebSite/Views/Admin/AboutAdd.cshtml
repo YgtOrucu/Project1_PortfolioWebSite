@@ -1,0 +1,47 @@
+﻿@model About
+@{
+    ViewData["Title"] = "AboutAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Modal Backdrop (Add New) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <!-- Modal Window -->
+    <div class="glass-modal w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl">
+        <div class="px-8 py-6 border-b border-white/10 flex justify-between items-center">
+            <div>
+                <h3 class="text-2xl font-bold">Ekleme İşlemi</h3>
+                <p class="text-sm text-[#ad9db9]">Yeni bir hakkımda yazısı ekleyebilirsiniz.</p>
+            </div>
+        </div>
+        <form method="post" class="p-8 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label for="NameSurname" class="text-sm font-medium text-slate-300">İsim Soyadı</label>
+                    <input name="NameSurname" id="NameSurname" class="w-full bg-[#151118] border border-[#322839] rounded-lg px-4 py-2.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Jane Doe" type="text" />
+                </div>
+                <div class="space-y-2">
+                    <label for="Title" class="text-sm font-medium text-slate-300">Başlık</label>
+                    <input name="Title" id="Title" class="w-full bg-[#151118] border border-[#322839] rounded-lg px-4 py-2.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Senior Backend Developer" type="text" />
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label for="Description" class="text-sm font-medium text-slate-300">Açıklama</label>
+                <textarea name="Description" id="Description" class="w-full bg-[#151118] border border-[#322839] rounded-lg px-4 py-2.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none" placeholder="Write a short intro about your professional experience..." rows="4"></textarea>
+            </div>
+            <div class="space-y-2">
+                <label for="ImageUrl" class="text-sm font-medium text-slate-300">Img Url</label>
+                <div class="flex gap-3">
+                    <input name="ImageUrl" id="ImageUrl" class="w-full bg-[#151118] border border-[#322839] rounded-lg px-4 py-2.5 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Url Adresi" type="text" />
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-4 pt-4 border-t border-white/10">
+                <a href="/Admin/About" class="px-6 py-2.5 text-sm font-bold text-[#ad9db9] hover:text-white transition-all">Cancel</a>
+                <button class="px-8 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg shadow-lg shadow-primary/20 transition-all" type="submit">
+                    Ekle
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

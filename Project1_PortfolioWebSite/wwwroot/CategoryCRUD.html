@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Category Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8311d4",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1a1022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100">
+    <div class="flex flex-col min-h-screen">
+        <!-- Top Navigation -->
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#322839] px-6 py-3 bg-white dark:bg-background-dark sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-4">
+                    <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">terminal</span>
+                    </div>
+                    <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">DevPortfolio Admin</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-slate-600 dark:text-[#ad9db9] hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
+                    <a class="text-slate-600 dark:text-[#ad9db9] hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Projects</a>
+                    <a class="text-primary dark:text-white text-sm font-bold border-b-2 border-primary" href="#">Categories</a>
+                    <a class="text-slate-600 dark:text-[#ad9db9] hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Settings</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-none">
+                        <div class="text-slate-400 dark:text-[#ad9db9] flex bg-slate-50 dark:bg-[#322839] items-center justify-center pl-4 rounded-l-lg">
+                            <span class="material-symbols-outlined text-sm">search</span>
+                        </div>
+                        <input class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-50 dark:bg-[#322839] focus:ring-0 text-sm placeholder:text-slate-400 dark:placeholder:text-[#ad9db9] rounded-r-lg" placeholder="Quick search..." />
+                    </div>
+                </label>
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBIJgjK1MEcZ5UMtKC5Eq6T9FGL3r4m14ojbonvy3KYTTApfU1lupaTKSIzNFLIDzHi5LwdRwQFBF6_ZLhJyaxWkAkR_nadJ_zCg5N6yyRhqJyMtjinbMoJ5NCYkHsktC8B_yrBFmcrosFjxhmVgV4lV1jxAy4y8ERAEEPpLfGxvsYOOMFhkNZsufPI38xtnUeTsNJ6iLE1niccXiU8t0yIuOSyyGE2gUaFnix5pi3KPTDcsI4eTZBRF-XQXpJ_JJHO24ZtNG4KZLZx");'></div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar -->
+            <aside class="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-[#322839] bg-white dark:bg-background-dark p-4 gap-6">
+                <div class="flex flex-col">
+                    <h1 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-[#ad9db9]">Content Management</h1>
+                </div>
+                <nav class="flex flex-col gap-1">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-[#ad9db9] hover:bg-slate-100 dark:hover:bg-[#322839] transition-all group" href="#">
+                        <span class="material-symbols-outlined text-xl group-hover:text-primary">dashboard</span>
+                        <span class="text-sm font-medium">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-[#ad9db9] hover:bg-slate-100 dark:hover:bg-[#322839] transition-all group" href="#">
+                        <span class="material-symbols-outlined text-xl group-hover:text-primary">folder_open</span>
+                        <span class="text-sm font-medium">Projects</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-semibold" href="#">
+                        <span class="material-symbols-outlined text-xl">category</span>
+                        <span class="text-sm">Categories</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-[#ad9db9] hover:bg-slate-100 dark:hover:bg-[#322839] transition-all group" href="#">
+                        <span class="material-symbols-outlined text-xl group-hover:text-primary">image</span>
+                        <span class="text-sm font-medium">Assets</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-[#ad9db9] hover:bg-slate-100 dark:hover:bg-[#322839] transition-all group" href="#">
+                        <span class="material-symbols-outlined text-xl group-hover:text-primary">mail</span>
+                        <span class="text-sm font-medium">Messages</span>
+                        <span class="ml-auto bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+                    </a>
+                </nav>
+            </aside>
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-background-dark/50">
+                <div class="max-w-6xl mx-auto p-8">
+                    <!-- Page Heading -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                        <div class="flex flex-col gap-1">
+                            <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Category Management</h1>
+                            <p class="text-slate-500 dark:text-[#ad9db9] max-w-lg">Organize and manage project tags and filtering logic for your portfolio frontend.</p>
+                        </div>
+                        <button class="flex items-center gap-2 px-6 h-11 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold shadow-lg shadow-primary/20 transition-all transform active:scale-95">
+                            <span class="material-symbols-outlined">add_circle</span>
+                            <span>Add New Category</span>
+                        </button>
+                    </div>
+                    <!-- Table Section -->
+                    <div class="bg-white dark:bg-[#151118] border border-slate-200 dark:border-[#322839] rounded-xl overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 dark:bg-[#221c27] border-b border-slate-200 dark:border-[#322839]">
+                                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#ad9db9]">Category Name</th>
+                                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#ad9db9]">Data Filter (Slug)</th>
+                                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#ad9db9] text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 dark:divide-[#322839]">
+                                    <!-- Row 1 -->
+                                    <tr class="group hover:bg-slate-50 dark:hover:bg-[#1e1924] transition-colors">
+                                        <td class="px-6 py-5">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-2 rounded-full bg-primary"></div>
+                                                <span class="font-medium text-slate-900 dark:text-white">Web Development</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-5">
+                                            <span class="font-mono text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-[#322839] text-slate-600 dark:text-primary font-semibold border border-slate-200 dark:border-primary/20">web-dev</span>
+                                        </td>
+                                        <td class="px-6 py-5 text-right">
+                                            <div class="flex justify-end gap-2">
+                                                <button class="p-2 text-slate-400 hover:text-primary dark:text-[#ad9db9] dark:hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">edit_note</span>
+                                                </button>
+                                                <button class="p-2 text-slate-400 hover:text-red-500 dark:text-[#ad9db9] dark:hover:text-red-400 transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 2 -->
+                                    <tr class="group hover:bg-slate-50 dark:hover:bg-[#1e1924] transition-colors">
+                                        <td class="px-6 py-5">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-2 rounded-full bg-emerald-500"></div>
+                                                <span class="font-medium text-slate-900 dark:text-white">UI/UX Design</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-5">
+                                            <span class="font-mono text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-[#322839] text-slate-600 dark:text-primary font-semibold border border-slate-200 dark:border-primary/20">design</span>
+                                        </td>
+                                        <td class="px-6 py-5 text-right">
+                                            <div class="flex justify-end gap-2">
+                                                <button class="p-2 text-slate-400 hover:text-primary dark:text-[#ad9db9] dark:hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">edit_note</span>
+                                                </button>
+                                                <button class="p-2 text-slate-400 hover:text-red-500 dark:text-[#ad9db9] dark:hover:text-red-400 transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 3 -->
+                                    <tr class="group hover:bg-slate-50 dark:hover:bg-[#1e1924] transition-colors">
+                                        <td class="px-6 py-5">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-2 rounded-full bg-blue-500"></div>
+                                                <span class="font-medium text-slate-900 dark:text-white">Mobile Apps</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-5">
+                                            <span class="font-mono text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-[#322839] text-slate-600 dark:text-primary font-semibold border border-slate-200 dark:border-primary/20">mobile-apps</span>
+                                        </td>
+                                        <td class="px-6 py-5 text-right">
+                                            <div class="flex justify-end gap-2">
+                                                <button class="p-2 text-slate-400 hover:text-primary dark:text-[#ad9db9] dark:hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">edit_note</span>
+                                                </button>
+                                                <button class="p-2 text-slate-400 hover:text-red-500 dark:text-[#ad9db9] dark:hover:text-red-400 transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 4 -->
+                                    <tr class="group hover:bg-slate-50 dark:hover:bg-[#1e1924] transition-colors">
+                                        <td class="px-6 py-5">
+                                            <div class="flex items-center gap-3">
+                                                <div class="size-2 rounded-full bg-amber-500"></div>
+                                                <span class="font-medium text-slate-900 dark:text-white">Backend Systems</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-5">
+                                            <span class="font-mono text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-[#322839] text-slate-600 dark:text-primary font-semibold border border-slate-200 dark:border-primary/20">api-logic</span>
+                                        </td>
+                                        <td class="px-6 py-5 text-right">
+                                            <div class="flex justify-end gap-2">
+                                                <button class="p-2 text-slate-400 hover:text-primary dark:text-[#ad9db9] dark:hover:text-white transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">edit_note</span>
+                                                </button>
+                                                <button class="p-2 text-slate-400 hover:text-red-500 dark:text-[#ad9db9] dark:hover:text-red-400 transition-colors">
+                                                    <span class="material-symbols-outlined text-xl">delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="p-4 bg-slate-50/50 dark:bg-[#221c27]/30 border-t border-slate-100 dark:border-[#322839] flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-[#ad9db9]">Showing 4 of 4 categories</span>
+                            <div class="flex gap-2">
+                                <button class="px-3 py-1 text-xs font-medium bg-white dark:bg-[#322839] border border-slate-200 dark:border-none rounded text-slate-400 cursor-not-allowed">Prev</button>
+                                <button class="px-3 py-1 text-xs font-medium bg-white dark:bg-[#322839] border border-slate-200 dark:border-none rounded hover:text-primary transition-colors">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- Modal Overlay (Depicted/Visual Representation) -->
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="w-full max-w-md bg-white dark:bg-[#1c1622] rounded-xl shadow-2xl border border-slate-200 dark:border-[#493b54] overflow-hidden transform scale-100">
+            <div class="flex items-center justify-between p-6 border-b border-slate-100 dark:border-[#322839]">
+                <h3 class="text-xl font-bold dark:text-white">Add New Category</h3>
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 space-y-5">
+                <!-- Field 1 -->
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-slate-700 dark:text-[#ad9db9]">Category Name</label>
+                    <input class="w-full px-4 py-2.5 bg-slate-50 dark:bg-[#322839] border border-slate-200 dark:border-transparent focus:border-primary dark:focus:border-primary focus:ring-1 focus:ring-primary rounded-lg text-slate-900 dark:text-white outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-[#5c4d6a]" placeholder="e.g. Machine Learning" type="text" />
+                    <p class="text-[11px] text-slate-400 dark:text-[#ad9db9]">This name will be visible to users in the portfolio navigation.</p>
+                </div>
+                <!-- Field 2 -->
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-slate-700 dark:text-[#ad9db9]">Data Filter (Slug)</label>
+                    <div class="relative">
+                        <input class="w-full font-mono text-sm px-4 py-2.5 bg-slate-50 dark:bg-[#322839] border border-emerald-500/50 dark:border-emerald-500/50 focus:border-primary rounded-lg text-emerald-600 dark:text-emerald-400 outline-none transition-all" type="text" value="machine-learning" />
+                        <span class="absolute right-3 top-2.5 material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
+                    </div>
+                    <p class="text-[11px] text-emerald-500 font-medium">Valid slug identifier.</p>
+                </div>
+                <!-- Validation Warning Example -->
+                <div class="p-3 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20 flex gap-3">
+                    <span class="material-symbols-outlined text-primary text-sm">info</span>
+                    <p class="text-[11px] text-slate-600 dark:text-[#ad9db9] leading-relaxed">Ensure the filter key matches the data attributes used in your project templates.</p>
+                </div>
+            </div>
+            <div class="p-6 bg-slate-50 dark:bg-[#221c27] flex justify-end gap-3">
+                <button class="px-5 py-2 text-sm font-bold text-slate-600 dark:text-[#ad9db9] hover:text-slate-900 dark:hover:text-white transition-colors">Cancel</button>
+                <button class="px-6 py-2 text-sm font-bold bg-primary text-white rounded-lg shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all">Create Category</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
