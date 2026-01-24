@@ -1,0 +1,237 @@
+﻿@model DashboardForAdminPage
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-8">
+    <div class="mb-10">
+        <h1 class="text-4xl font-extrabold tracking-tight mb-2">Hoşgeldin, Admin 👋</h1>
+        <p class="text-slate-500 dark:text-[#ab9db9]">Portföy verilerinizin ve son etkileşimlerinizin doğrudan genel görünümü.</p>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="glass-card p-6 rounded-lg glow-border flex items-center gap-5">
+            <div class="size-14 rounded-full bg-slate-500/10 flex items-center justify-center border border-slate-500/20">
+                <span class="material-symbols-outlined text-slate-400">mail</span>
+            </div>
+            <div>
+                <p class="text-slate-400 text-sm font-medium">Toplam Mesaj</p>
+                <p class="text-3xl font-black">@Model.TotalMessage</p>
+            </div>
+        </div>
+        <div class="bg-primary/20 border border-primary/40 p-6 rounded-lg relative overflow-hidden group">
+            <div class="absolute -right-4 -top-4 size-24 bg-primary/20 rounded-full blur-2xl"></div>
+            <div class="flex items-center gap-5 relative z-10">
+                <div class="size-14 rounded-full bg-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white">mark_email_unread</span>
+                </div>
+                <div>
+                    <p class="text-primary font-bold text-sm">Okunmamış Mesajlar</p>
+                    <p class="text-3xl font-black">@Model.UnReadMessage</p>
+                </div>
+            </div>
+        </div>
+        <div class="glass-card p-6 rounded-lg glow-border flex items-center gap-5">
+            <div class="size-14 rounded-full bg-slate-500/10 flex items-center justify-center border border-slate-500/20">
+                <span class="material-symbols-outlined text-slate-400">mail</span>
+            </div>
+            <div>
+                <p class="text-slate-400 text-sm font-medium">Okunan Mesajlar</p>
+                <p class="text-3xl font-black">@Model.ReadMessage</p>
+            </div>
+        </div>
+        <div class="glass-card p-6 rounded-lg glow-border flex items-center gap-5">
+            <div class="size-14 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                <span class="material-symbols-outlined text-emerald-500">folder_special</span>
+            </div>
+            <div>
+                <p class="text-slate-400 text-sm font-medium">Toplam Projeler</p>
+                <p class="text-3xl font-black">@Model.TotalProject</p>
+            </div>
+        </div>
+        <div class="glass-card p-6 rounded-lg glow-border flex items-center gap-5">
+            <div class="size-14 rounded-full bg-slate-500/10 flex items-center justify-center border border-slate-500/20">
+                <span class="material-symbols-outlined text-slate-400">category</span>
+            </div>
+            <div>
+                <p class="text-slate-400 text-sm font-medium">Toplam Kategoriler</p>
+                <p class="text-3xl font-black">@Model.TotalCategory</p>
+            </div>
+        </div>
+        <div class="glass-card p-6 rounded-lg glow-border flex items-center gap-5">
+            <div class="size-14 rounded-full bg-slate-500/10 flex items-center justify-center border border-slate-500/20">
+                <span class="material-symbols-outlined text-slate-400">reviews</span>
+            </div>
+            <div>
+                <p class="text-slate-400 text-sm font-medium">Toplam Yorumlar</p>
+                <p class="text-3xl font-black">@Model.TotalTestimoial</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-6 mb-10">
+
+        <!-- Yeni Proje -->
+        <a href="/Admin/PortfolioAdd"
+           class="flex-1 flex items-center justify-between p-5 rounded-xl
+              bg-primary/15 border border-primary/30
+              hover:bg-primary/25 transition-all group">
+            <div class="flex items-center gap-4">
+                <div class="size-11 rounded-lg bg-primary flex items-center justify-center
+                        group-hover:bg-white transition-colors">
+                    <span class="material-symbols-outlined text-white group-hover:text-primary">
+                        add_to_photos
+                    </span>
+                </div>
+                <span class="font-bold">Yeni Proje</span>
+            </div>
+            <span class="material-symbols-outlined text-primary/70 group-hover:translate-x-1 transition">
+                chevron_right
+            </span>
+        </a>
+
+        <!-- Yeni Kategori -->
+        <a href="/Admin/CategoryAdd"
+           class="flex-1 flex items-center justify-between p-5 rounded-xl
+              bg-violet-500/15 border border-violet-500/30
+              hover:bg-violet-500/25 transition-all group">
+            <div class="flex items-center gap-4">
+                <div class="size-11 rounded-lg bg-violet-500 flex items-center justify-center
+                        group-hover:bg-white transition-colors">
+                    <span class="material-symbols-outlined text-white group-hover:text-violet-500">
+                        category
+                    </span>
+                </div>
+                <span class="font-bold">Yeni Kategori</span>
+            </div>
+            <span class="material-symbols-outlined text-violet-400 group-hover:translate-x-1 transition">
+                chevron_right
+            </span>
+        </a>
+
+        <!-- Yeni Yorum -->
+        <a href="/Admin/TestimonialsAdd"
+           class="flex-1 flex items-center justify-between p-5 rounded-xl
+              bg-amber-500/15 border border-amber-500/30
+              hover:bg-amber-500/25 transition-all group">
+            <div class="flex items-center gap-4">
+                <div class="size-11 rounded-lg bg-amber-500 flex items-center justify-center
+                        group-hover:bg-white transition-colors">
+                    <span class="material-symbols-outlined text-white group-hover:text-amber-500">
+                        format_quote
+                    </span>
+                </div>
+                <span class="font-bold">Yeni Yorum</span>
+            </div>
+            <span class="material-symbols-outlined text-amber-400 group-hover:translate-x-1 transition">
+                chevron_right
+            </span>
+        </a>
+
+    </div>
+
+
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+        <div class="xl:col-span-9 space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="p-5 rounded-xl bg-primary/15 border border-primary/30">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold">Kategoriye Göre Projeler</h3>
+                        <div class="bg-white/5 px-3 py-1 rounded-full border border-white/10 flex items-center gap-2">
+                            <span class="text-[10px] font-black uppercase text-slate-500">Toplam Kategori</span>
+                            <span class="text-xs font-black text-primary">@Model.TotalCategory</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        @foreach (var item in Model.Portfolios)
+                        {
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg
+                                border border-white/5 hover:border-primary/30 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary text-xl">category</span>
+                                    <span class="font-bold">@item.CategoryName</span>
+                                </div>
+                                <span class="bg-primary/20 text-primary text-xs font-black px-3 py-1 rounded-full">
+                                    @item.ToplamProje
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-lg">
+                    <h3 class="text-xl font-bold mb-6">Son Yorumlar</h3>
+
+                    <div class="space-y-6">
+                        @foreach (var item in Model.Testimonials)
+                        {
+                            <div class="flex gap-4">
+                                <div class="size-12 rounded-full border-2 border-primary/20 bg-cover bg-center shrink-0"
+                                     style="background-image: url('@item.ImageUrl')">
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-sm">@item.NameSurname</h4>
+                                    <p class="text-xs text-slate-500 mb-2">@item.TitleAndCompany</p>
+                                    <p class="text-sm text-[#ab9db9] italic leading-relaxed">
+                                        @(item.CommentDetails.Length > 40
+                                                                            ? item.CommentDetails.Substring(0, 40) + "..."
+                                                                            : item.CommentDetails)
+                                </p>
+                            </div>
+                        </div>
+                                                }
+                    </div>
+                </div>
+
+            </div>
+            <div class="glass-card p-8 rounded-lg">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold">Mesajlar</h3>
+                    <a href="/Admin/Message" class="text-xs font-bold text-primary hover:underline">View All Messages</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-white/5">
+                                <th class="pb-4 text-xs font-black uppercase text-slate-500 tracking-widest">Gönderen</th>
+                                <th class="pb-4 text-xs font-black uppercase text-slate-500 tracking-widest">Konu</th>
+                                <th class="pb-4 text-xs font-black uppercase text-slate-500 tracking-widest">Durum</th>
+                                <th class="pb-4 text-xs font-black uppercase text-slate-500 tracking-widest text-right">Tarih</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            @foreach (var item in Model.Messages)
+                            {
+                                <tr class="group hover:bg-white/5 transition-colors cursor-pointer">
+                                    <td class="py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center font-bold text-[10px] text-primary">@(item.NameSurname.Substring(0, 1))</div>
+                                            <span class="font-bold">@(item.NameSurname)</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 text-sm text-[#ab9db9]">@(item.MessageDetails.Substring(0, 10) + "...")</td>
+                                    <td class="py-4">
+                                        @if (item.IsRead)
+                                        {
+                                            <span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-0.5 rounded uppercase">Okundu</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-0.5 rounded uppercase">Okunmadı</span>
+                                        }
+                                    </td>
+                                    <td class="py-4 text-xs font-medium text-slate-500 text-right">@(item.SendDate.ToString("dd/MM/yyyy"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

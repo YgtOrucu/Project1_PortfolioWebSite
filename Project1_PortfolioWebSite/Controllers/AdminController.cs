@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Project1_PortfolioWebSite.Context;
 using Project1_PortfolioWebSite.Entities;
 using Project1_PortfolioWebSite.Models.ContactİnfoForAdminPage;
+using Project1_PortfolioWebSite.Models.DashboardForAdminPage;
 
 namespace Project1_PortfolioWebSite.Controllers
 {
@@ -15,6 +16,30 @@ namespace Project1_PortfolioWebSite.Controllers
         {
             _context = context;
         }
+
+        #region Dashboard
+        public IActionResult Dashboard()
+        {
+            var model = new DashboardForAdminPage
+            {
+                TotalMessage = _context.Messages.Count(),
+                ReadMessage = _context.Messages.Where(x => x.IsRead).Count(),
+                UnReadMessage = _context.Messages.Where(x => !x.IsRead).Count(),
+                TotalProject = _context.Portfolios.Count(),
+                TotalCategory = _context.Categories.Count(),
+                TotalTestimoial = _context.Testimonials.Count(),
+                Testimonials = _context.Testimonials.OrderByDescending(x => x.TestimonialId).Take(3).ToList(),
+                Messages = _context.Messages.OrderByDescending(x => x.SendDate).Take(3).ToList(),
+                Portfolios = _context.Categories.GroupJoin(_context.Portfolios, c => c.CategoryId, p => p.CategoryId, (c, portfolios) => new CategoryProjectCountDto
+                {
+                    CategoryName = c.Name,
+                    ToplamProje = portfolios.Count()
+                }).ToList()
+            };
+            return View(model);
+        }
+        #endregion
+
 
         #region AboutOperations
 
@@ -302,7 +327,7 @@ namespace Project1_PortfolioWebSite.Controllers
             ViewBag.TotalMessage = _context.Messages.Count();
             ViewBag.IsUnReadMessage = _context.Messages.Where(x => x.IsRead == false).Count();
             ViewBag.IsReadMessage = _context.Messages.Where(x => x.IsRead == true).Count();
-            ViewBag.TodaysMessages = _context.Messages.Where(x=>x.SendDate.Day == DateTime.Now.Day).Count();
+            ViewBag.TodaysMessages = _context.Messages.Where(x => x.SendDate.Day == DateTime.Now.Day).Count();
 
 
             #endregion
@@ -326,7 +351,7 @@ namespace Project1_PortfolioWebSite.Controllers
         #region PortfolioList
         public IActionResult Portfolio()
         {
-            var values = _context.Portfolios.Include(x=>x.Category).ToList();
+            var values = _context.Portfolios.Include(x => x.Category).ToList();
             return View(values);
         }
 
@@ -510,6 +535,64 @@ namespace Project1_PortfolioWebSite.Controllers
             return RedirectToAction("Testimonials");
         }
 
+
+
+        #endregion
+
+        #endregion
+
+        #region ServicesOperation
+
+        #region ServicesList
+        public IActionResult Services()
+        {
+            var values = _context.Services.ToList();
+            return View(values);
+        }
+
+        #endregion
+
+        #region ServicesAdd
+        [HttpGet]
+        public IActionResult ServicesAdd()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult ServicesAdd(Service Service)
+        {
+            _context.Services.Add(Service);
+            _context.SaveChanges();
+            return RedirectToAction("Services");
+        }
+        #endregion
+
+        #region ServicesDelete
+        public IActionResult ServicesDelete(int id)
+        {
+            var values = _context.Services.Find(id);
+            _context.Services.Remove(values);
+            _context.SaveChanges();
+            return RedirectToAction("Services");
+        }
+        #endregion
+
+        #region ServicesWithAndUpdate
+        public IActionResult ServicesEdit(int id)
+        {
+            var values = _context.Services.Find(id);
+            return View("ServicesEdit", values);
+        }
+
+        [HttpPost]
+        public IActionResult ServicesUpdate(Service Service)
+        {
+            _context.Services.Update(Service);
+            _context.SaveChanges();
+            return RedirectToAction("Services");
+        }
 
 
         #endregion

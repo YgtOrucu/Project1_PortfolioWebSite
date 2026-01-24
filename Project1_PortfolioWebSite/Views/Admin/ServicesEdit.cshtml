@@ -1,0 +1,50 @@
+﻿@model Service
+@{
+    ViewData["Title"] = "ServicesEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-background-dark/80 backdrop-blur-md px-4">
+    <div class="w-full max-w-lg bg-card-dark border border-border-dark rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div class="px-8 py-6 border-b border-border-dark flex justify-between items-center">
+            <div>
+                <h3 class="text-white text-xl font-bold">Güncelle</h3>
+                <p class="text-[#ab9db9] text-sm mt-1">Tekliflerinizi güncelleştirmek için ayrıntıları yenileyin.</p>
+            </div>
+        </div>
+        <form asp-controller="Admin" asp-action="ServicesUpdate" class="p-8 space-y-6" method="post">
+            <input asp-for="ServiceId" type="hidden" />
+            <div class="space-y-2">
+                <label class="block text-sm font-semibold text-[#ab9db9] tracking-wide" for="Title">Başlık</label>
+                <input class="w-full bg-background-dark border border-border-dark rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" asp-for="Title" type="text" />
+            </div>
+            <div class="space-y-2">
+                <label class="block text-sm font-semibold text-[#ab9db9] tracking-wide" for="IconUrl">Icon Url</label>
+                <div class="flex gap-4">
+                    <div class="flex-1 relative">
+                        <input class="w-full bg-background-dark border border-border-dark rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all pl-10" asp-for="IconUrl" type="text" />
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">link</span>
+                    </div>
+                    <div class="h-[50px] w-[50px] bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center text-primary group cursor-help" title="Live Preview">
+                        <span class="material-symbols-outlined text-2xl">rocket_launch</span>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="block text-sm font-semibold text-[#ab9db9] tracking-wide" for="Description">Açıklama</label>
+                <textarea class="w-full bg-background-dark border border-border-dark rounded-xl px-4 py-3 text-white placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none" asp-for="Description" rows="4"></textarea>
+            </div>
+            <div class="flex gap-3 pt-4">
+                <a href="/Admin/Services" class="flex-1 px-6 py-3 border border-border-dark text-white rounded-xl font-bold hover:bg-white/5 transition-all" type="button">
+                    Geri
+                </a>
+                <button class="flex-1 px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2" type="submit">
+                    <span class="material-symbols-outlined text-lg">save</span>
+                    Güncelle
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
