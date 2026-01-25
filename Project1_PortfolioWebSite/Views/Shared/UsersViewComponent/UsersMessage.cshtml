@@ -1,0 +1,39 @@
+﻿@model Message
+<form class="mb-0" asp-action="SendMessage" asp-controller="UserPage" method="post" autocomplete="off">
+	<div class="form-row">
+		<div class="form-process"></div>
+
+		<div class="col-12 col-md-6">
+			<div class="form-group error-text-white">
+				<input type="text" asp-for="NameSurname" placeholder="Adınız Soyadınız" class="form-control required">
+			</div>
+		</div>
+
+		<div class="col-12 col-md-6">
+			<div class="form-group error-text-white">
+				<input type="email" asp-for="EmailAddress" placeholder="Mail Adresi" class="form-control required">
+			</div>
+		</div>
+
+		<div class="col-12">
+			<div class="form-group error-text-white">
+				<input type="text" asp-for="Subject" placeholder="Konu" class="form-control">
+			</div>
+		</div>
+
+		<div class="col-12 mb-4">
+			<div class="form-group error-text-white">
+				<textarea asp-for="MessageDetails" class="form-control required" rows="7" placeholder="Açıklama"></textarea>
+			</div>
+		</div>
+
+		<div class="col-12 d-none">
+			<input type="text" id="cf-botcheck" name="cf-botcheck" value="" class="form-control" />
+		</div>
+
+		<div class="col-12 text-center">
+			<button class="btn btn-primary" type="submit" id="cf-submit" name="cf-submit">Mesaj Gönder</button>
+		</div>
+	</div>
+</form>
+<div class="contact-form-result text-center"></div>

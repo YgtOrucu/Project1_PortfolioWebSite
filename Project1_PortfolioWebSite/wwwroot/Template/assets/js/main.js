@@ -338,10 +338,9 @@ License: https://themeforest.net/licenses/standard
 				transition: 'zoomOut',
 				transitionDuration: 4000,
 				slides: [
-					{ src: 'demo/images/image-7.jpg' },
-					{ src: 'demo/images/image-16.jpg' },
-					{ src: 'demo/images/image-17.jpg' },
-					{ src: 'demo/images/image-15.jpg' }
+					{ src: '/images/images1.png' },
+					{ src: '/images/images2.png' },
+					{ src: '/images/images3.png' },
 				]
 			});
 		}

@@ -1,0 +1,61 @@
+﻿@model Contact
+<section id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 mx-lg-auto">
+				<div class="row mb-8">
+					<div class="col-lg-8 mx-lg-auto text-center">
+						<div class="section-title h2 mb-3">
+							<h2 class="mb-0">İletişim</h2>
+							<span class="title-letter">İ</span>
+						</div>
+						<p>@Model.Description</p>
+					</div>
+				</div>
+				<div class="row mb-8">
+					<div class="col-md-4 mb-5 mb-md-0">
+						<div class="feature-block">
+							<div class="feature-icon text-primary mb-4">
+								<div class="mx-auto">
+									<i class="ti-mobile"></i>
+								</div>
+							</div>
+							<p class="text-center">
+								@Model.Phone
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-5 mb-md-0">
+						<div class="feature-block">
+							<div class="feature-icon text-primary mb-4">
+								<div class="mx-auto">
+									<i class="ti-location-pin"></i>
+								</div>
+							</div>
+							<p class="text-center">
+								@Model.Address
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="feature-block">
+							<div class="feature-icon text-primary mb-4">
+								<div class="mx-auto">
+									<i class="ti-email"></i>
+								</div>
+							</div>
+							<p class="text-center">
+								<a href="mailto:support@example.com" class="text-dark">@Model.EMail</a><br />
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="contact-form">
+					@await Component.InvokeAsync("UsersMessage")	
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

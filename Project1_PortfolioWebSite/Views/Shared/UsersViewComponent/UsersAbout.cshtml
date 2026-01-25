@@ -1,0 +1,54 @@
+﻿@using ResumeProjectDemo.Models.ViewModelForAboutArea
+@model ModelsForAboutArea
+<style>
+    .about-img {
+        width: 80%;
+        height: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+<section id="about">
+    <div class="container">
+        <div class="section-title h2 text-center mb-8">
+            <h2 class="mb-0">Hakkımda</h2>
+            <span class="title-letter">H</span>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 d-none d-lg-block text-center">
+                <img class="img-fluid rounded about-img" src="/images/images4.png" alt="">
+            </div>
+
+
+            <div class="col-lg-8">
+                <h3>@Model.Abouts.NameSurname</h3>
+                <p class="lead">@Model.Abouts.Title</p>
+                <p class="mb-5">@Model.Abouts.Description</p>
+                <div class="row mb-8">
+                    <div class="col-md-6 mb-5 mb-md-0">
+                        <h4 class="mb-4">Eğitim</h4>
+                        @foreach (var item in Model.Educations)
+                        {
+                            <p class="h5">@(item.Title)</p>
+                            <p>@(item.SchoolName + " " + item.Date)</p>
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4 class="mb-4">Deneyimlerim</h4>
+                        @foreach (var item in Model.Experiences)
+                        {
+                            <p class="h5">@(item.Title)</p>
+                            <p>@(item.WorkDate)</p>
+                        }
+                    </div>
+                </div>
+                <a asp-controller="UserPage" asp-action="DownloadCV" class="btn btn-primary">
+                    CV İndir
+                </a>
+                <a href="#contact" class="btn btn-light scrollto">Mesaj Gönder</a>
+            </div>
+        </div>
+    </div>
+</section>

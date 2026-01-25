@@ -1,0 +1,60 @@
+﻿@model List<Skills>
+<section id="skills" class="bg-light">
+    <div class="container">
+        <div class="row mb-8">
+            <div class="col-lg-10 col-xl-8 mx-lg-auto text-center">
+                <div class="section-title h2 mb-3">
+                    <h2 class="mb-0">Yeteneklerim</h2>
+                    <span class="title-letter">Y</span>
+                </div>
+                <p>
+                    Teknik yetkinliklerimi [Dil/Framework] üzerindeki projelerle şekillendirirken, karmaşık algoritmaları çözme ve temiz kod yazma pratiklerine odaklanıyorum.
+                    Arayüz geliştirmede [Teknoloji] kullanıyor, arka planda ise [Teknoloji] ile sağlam bir mantık yapısı kurguluyorum.
+                    Sürekli değişen teknoloji dünyasında, yeni kütüphaneleri ve [Yetenek: Örn. Unit Testing veya UI/UX] standartlarını projelerime hızla adapte edebiliyorum
+                </p>
+            </div>
+        </div>
+        <div class="row">
+
+            @foreach (var item in Model.Take(2))
+            {
+                <div class="col-md-6 mb-4 mb-md-0" style="margin-top:1rem">
+                    <p class="h6 mb-1">@(item.Name)</p>
+                    <div class="progress mb-6 rounded-0" style="height:5px">
+                        <div class="progress-bar" role="progressbar" style="width: @(item.Value + "%")" aria-valuenow="@(item.Value)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var item in Model.Skip(2).Take(2))
+            {
+                <div class="col-md-6" style="margin-top:1rem">
+                    <p class="h6 mb-1">@(item.Name)</p>
+                    <div class="progress mb-6 rounded-0" style="height:5px">
+                        <div class="progress-bar" role="progressbar" style="width: @(item.Value + "%")" aria-valuenow="@(item.Value)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var item in Model.Skip(4).Take(2))
+            {
+                <div class="col-md-6 mb-4 mb-md-0" style="margin-top:1rem">
+                    <p class="h6 mb-1">@(item.Name)</p>
+                    <div class="progress mb-6 rounded-0" style="height:5px">
+                        <div class="progress-bar" role="progressbar" style="width: @(item.Value + "%")" aria-valuenow="@(item.Value)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var item in Model.Skip(6).Take(2))
+            {
+                <div class="col-md-6" style="margin-top:1rem">
+                    <p class="h6 mb-1">@(item.Name)</p>
+                    <div class="progress mb-6 rounded-0" style="height:5px">
+                        <div class="progress-bar" role="progressbar" style="width: @(item.Value + "%")" aria-valuenow="@(item.Value)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

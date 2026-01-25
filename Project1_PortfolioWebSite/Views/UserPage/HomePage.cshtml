@@ -1,0 +1,66 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("UsersHead")
+
+<body class="slideshow-zoom-background">
+
+	<div id="preloader" class="preloader">
+		<div class="loader-status">
+			<div class="spinner"></div>
+		</div>
+	</div>
+
+	<div class="site-container">
+
+		<div id="top"></div>
+
+		<a href="#" class="mobile-logo mobile-logo-light bg-dark">
+			<span>Muhsin Yiğit</span>
+		</a>
+
+		<button type="button" id="navigation-toggle" class="nav-toggle nav-toggle-light bg-dark">
+			<span></span>
+		</button>
+
+		@await Component.InvokeAsync("UsersHeader")
+
+
+		<div class="header-overlay">
+			<div class="overlay-inner bg-dark opacity-80"></div>
+		</div>
+
+		<button type="button" id="backtotop" class="btn btn-primary btn-icon">
+			<span class="btn-icon-inner fas fa-angle-up"></span>
+		</button>
+
+		<div class="page-wrapper">
+			@await Component.InvokeAsync("UsersFeature")
+
+			<div class="page-content">
+
+				@await Component.InvokeAsync("UsersAbout")
+
+				@await Component.InvokeAsync("UsersSkills")
+
+				@await Component.InvokeAsync("UsersExperience")
+
+				@await Component.InvokeAsync("UsersService")
+
+				@await Component.InvokeAsync("UsersPortfolio")
+
+				@await Component.InvokeAsync("UsersTestimonial")
+
+				@await Component.InvokeAsync("UsersContact")
+
+				@await Component.InvokeAsync("UsersFooter")
+
+			</div>
+		</div>
+	</div>
+	@await Component.InvokeAsync("UsersScript")
+</body>
+</html>
