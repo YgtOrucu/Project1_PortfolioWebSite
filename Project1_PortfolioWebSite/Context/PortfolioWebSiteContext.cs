@@ -7,7 +7,7 @@ namespace Project1_PortfolioWebSite.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=YIGITORUCU\\MY_YAZILIM_KURSU;Initial Catalog=DB_Project1_PortfolioWebSite;Integrated Security=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("DB_ADRESİ");
         }
 
         public DbSet<About> Abouts { get; set; }
