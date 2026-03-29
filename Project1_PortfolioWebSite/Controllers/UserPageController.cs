@@ -29,10 +29,10 @@ namespace Project1_PortfolioWebSite.Controllers
 
         public IActionResult DownloadCV()
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files/MuhsinYiğitÖrücüCV.pdf");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files/cv");
             var fileBytes = System.IO.File.ReadAllBytes(filePath);
 
-            return File(fileBytes, "application/pdf", "Yigit_CV.pdf");
+            return File(fileBytes, "application/pdf", "cv.pdf");
         }
     }
 }
